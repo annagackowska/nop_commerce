@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:InputTestData xmlns:ns2="urn:org:easetech:easytest:1.0">
+    <TestMethod name="registerUserTest">
+        <Description>Different User Registration Tests
+        </Description>
+
+        <TestRecord id="1">
+            <Description>User 1</Description>
+            <InputData>
+                <Entry key="firstName" value="Jan" />
+                <Entry key="lastName" value="Kowalski" />
+                <Entry key="dayOfBirth" value="1" />
+                <Entry key="monthOfBirth" value="January" />
+                <Entry key="yearOfBirth" value="1989" />
+                <Entry key="email" value="jan@gmail.com" />
+                <Entry key="password" value="kowalski" />
+                <Entry key="confirmPassword" value="kowalski" />
+
+            </InputData>
+        </TestRecord>
+
+        <TestRecord id="2">
+            <Description>User 2</Description>
+            <InputData>
+                <Entry key="firstName" value="Ola" />
+                <Entry key="lastName" value="Kowalska" />
+                <Entry key="dayOfBirth" value="5" />
+                <Entry key="monthOfBirth" value="January" />
+                <Entry key="yearOfBirth" value="1990" />
+                <Entry key="email" value="ola@gmail.com" />
+                <Entry key="password" value="kowalska" />
+                <Entry key="confirmPassword" value="kowalska" />
+
+            </InputData>
+        </TestRecord>
+
+        <TestRecord id="3">
+            <Description>User 3</Description>
+            <InputData>
+                <Entry key="firstName" value="Ala" />
+                <Entry key="lastName" value="Drag" />
+                <Entry key="dayOfBirth" value="15" />
+                <Entry key="monthOfBirth" value="March" />
+                <Entry key="yearOfBirth" value="2000" />
+                <Entry key="email" value="aladrag@gmail.com" />
+                <Entry key="password" value="aladrag" />
+                <Entry key="confirmPassword" value="aladrag" />
+            </InputData>
+        </TestRecord>
+    </TestMethod>
+</ns2:InputTestData>
