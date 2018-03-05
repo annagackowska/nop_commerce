@@ -7,4 +7,6 @@ public class URLS {
     public static final String HOME_PAGE = "http://demo.nopcommerce.com";
     public static final String COMPUTER_PAGE = "http://demo.nopcommerce.com/computers";
     public static final String CART_PAGE = "http://demo.nopcommerce.com/cart";
+    public static final String BOOK_PAGE = "http://demo.nopcommerce.com/books";
+    public static final String NOTEBOOKS_PAGE = "http://demo.nopcommerce.com/notebooks";
 }

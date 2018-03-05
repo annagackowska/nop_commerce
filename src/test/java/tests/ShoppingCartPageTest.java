@@ -1,0 +1,114 @@
+package tests;
+
+import org.assertj.core.api.Assertions;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
+import pages.HomePage;
+import pages.RegisterPage;
+import pages.ShoppingCartPage;
+import utils.drivers.WebDriverCreators;
+import utils.drivers.WebDriverProvider;
+
+import static org.junit.Assert.assertTrue;
+import static tests.URLS.*;
+
+public class ShoppingCartPageTest {
+
+    private WebDriver driver;
+    private HomePage homePage;
+    private ShoppingCartPage shoppingCartPage;
+    private URLS urls;
+
+
+    @Before
+    public void setUp() {
+        driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
+        driver.manage().window().maximize();
+
+        homePage = PageFactory.initElements(driver, HomePage.class);
+        shoppingCartPage = PageFactory.initElements(driver,ShoppingCartPage.class);
+
+        driver.get(HOME_PAGE);
+    }
+
+    @Test
+    public void addToShoppingCart() {
+
+        homePage.clickOnBooksButton();
+
+        homePage.clickOnBookToCart();
+
+        shoppingCartPage.clickOnShoppingCartButton();
+
+        driver.get(CART_PAGE);
+
+        assertTrue("not add to cart", shoppingCartPage.isInCart());
+
+    }
+
+    @Test
+    public void addToShoppingCartLongWay() {
+
+        Actions builder = new Actions(driver);
+        builder.moveToElement(driver.findElement(By.xpath("//ul[@class='top-menu']//li//a[@href='/computers']")))
+                .click(driver.findElement(By.xpath("//ul[@class='top-menu']//li//ul[@class='sublist first-level']//li//a[@href='/notebooks']")))
+                .perform();
+
+        driver.get(NOTEBOOKS_PAGE);
+
+        shoppingCartPage.clickOnMacBook();
+
+        shoppingCartPage.clickOnAddToCart4();
+
+        driver.get(CART_PAGE);
+
+        Assertions.assertThat(shoppingCartPage.getSkuNumber()).isEqualToIgnoringCase("AP_MBP_13");
+
+    }
+
+    @Test
+    public void continueShopping(){
+
+        homePage.clickOnBooksButton();
+
+        homePage.clickOnBookToCart();
+
+        shoppingCartPage.clickOnShoppingCartButton();
+
+        driver.get(CART_PAGE);
+
+        shoppingCartPage.clickOnContinueShoppingButton();
+
+        driver.get(HOME_PAGE);
+
+        Actions builder = new Actions(driver);
+        builder.moveToElement(driver.findElement(By.xpath("//ul[@class='top-menu']//li//a[@href='/computers']")))
+                .click(driver.findElement(By.xpath("//ul[@class='top-menu']//li//ul[@class='sublist first-level']//li//a[@href='/notebooks']")))
+                .perform();
+
+        driver.get(NOTEBOOKS_PAGE);
+
+        shoppingCartPage.clickOnMacBook();
+
+        shoppingCartPage.clickOnAddToCart4();
+
+        driver.get(CART_PAGE);
+
+        Assertions.assertThat(shoppingCartPage.getSkuNumber()).isEqualToIgnoringCase("AP_MBP_13");
+        Assertions.assertThat(shoppingCartPage.getSkuNumber2()).isEqualToIgnoringCase("PRIDE_PRJ");
+
+
+
+
+
+    }
+
+    @After
+    public void tearDown() { driver.close(); }
+
+}

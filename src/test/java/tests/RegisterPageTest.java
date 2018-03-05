@@ -48,7 +48,6 @@ public class RegisterPageTest {
 
         registerPage.clickOnRegisterButton();
 
-        // assertEquals("http://demo.nopcommerce.com/registerresult/1", driver.getCurrentUrl());
         Assertions.assertThat(registerPage.getResultMessage()).isEqualToIgnoringCase("Your registration completed");
 
     }
