@@ -30,7 +30,7 @@ public class ShoppingCartPageTest {
         driver = new WebDriverProvider(WebDriverCreators.CHROME).getDriver();
         driver.manage().window().maximize();
 
-        homePage = PageFactory.initElements(driver, HomePage.class);
+        homePage = new HomePage(driver);
         shoppingCartPage = PageFactory.initElements(driver,ShoppingCartPage.class);
 
         driver.get(HOME_PAGE);
