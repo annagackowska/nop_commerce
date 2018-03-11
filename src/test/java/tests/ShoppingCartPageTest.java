@@ -14,6 +14,8 @@ import pages.ShoppingCartPage;
 import utils.drivers.WebDriverCreators;
 import utils.drivers.WebDriverProvider;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.assertTrue;
 import static tests.URLS.*;
 
@@ -54,10 +56,9 @@ public class ShoppingCartPageTest {
     @Test
     public void addToShoppingCartLongWay() {
 
-        Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(By.xpath("//ul[@class='top-menu']//li//a[@href='/computers']")))
-                .click(driver.findElement(By.xpath("//ul[@class='top-menu']//li//ul[@class='sublist first-level']//li//a[@href='/notebooks']")))
-                .perform();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+        homePage.clickNotebooksButton();
 
         driver.get(NOTEBOOKS_PAGE);
 
@@ -73,6 +74,7 @@ public class ShoppingCartPageTest {
 
     @Test
     public void continueShopping(){
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         homePage.clickOnBooksButton();
 
@@ -86,10 +88,7 @@ public class ShoppingCartPageTest {
 
         driver.get(HOME_PAGE);
 
-        Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(By.xpath("//ul[@class='top-menu']//li//a[@href='/computers']")))
-                .click(driver.findElement(By.xpath("//ul[@class='top-menu']//li//ul[@class='sublist first-level']//li//a[@href='/notebooks']")))
-                .perform();
+        homePage.clickNotebooksButton();
 
         driver.get(NOTEBOOKS_PAGE);
 
@@ -101,10 +100,6 @@ public class ShoppingCartPageTest {
 
         Assertions.assertThat(shoppingCartPage.getSkuNumber()).isEqualToIgnoringCase("AP_MBP_13");
         Assertions.assertThat(shoppingCartPage.getSkuNumber2()).isEqualToIgnoringCase("PRIDE_PRJ");
-
-
-
-
 
     }
 

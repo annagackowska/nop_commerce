@@ -70,20 +70,13 @@ public class HomePage {
     public void clickDesktopButton() {
 
         Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(By.xpath("//ul[@class='top-menu']//li//a[@href='/computers']")))
-                .click(driver.findElement(By.xpath("//ul[@class='top-menu']//li//ul[@class='sublist first-level']//li//a[@href='/desktops']")))
-                .perform();
+        builder.moveToElement(computersButton).click(desktops).perform();
 
     }
 
     public void clickNotebooksButton() {
         Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(By.xpath("//ul[@class='top-menu']//li//a[@href='/computers']")))
-                .click(driver.findElement(By.xpath("//ul[@class='top-menu']//li//ul[@class='sublist first-level']//li//a[@href='/notebooks']")))
-                .perform();
-
-
-
+        builder.moveToElement(computersButton).click(notebooks).perform();
     }
 
 
